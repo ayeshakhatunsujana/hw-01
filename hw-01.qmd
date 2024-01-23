@@ -1,6 +1,6 @@
 ---
 title: "HW 01"
-author: "INSERT YOUR NAME HERE"
+author: "Ayesha Khatun"
 format:
   html:
     embed-resources: true
@@ -9,29 +9,81 @@ jupyter: python3
 ---
 
 ## Import libraries
+import numpy as np
+import pandas as pd
+import statistics
 
-```{python}
 #| label: label-me-1
 
-```
 
 ## 1 - Python basics
 
 ### Variables and Types
 
-```{python}
+
+#| label: label-me-1
+import numpy as np
+import pandas as pd
+import statistics
 #| label: label-me-2
-
-```
-
-### Control Stuctures
-
-## 2 - NumPy Introduction
-
-```{python}
+age = 25
+course = "Data Mining"
+print("Age:", age, "Type:", type(age))
+print("Course:", course, "Type:", type(course))
 #| label: label-me-3
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, num):
+        if num % i == 0:
+            return False
+    return True
+#| label: label-me-4
+student_grades = {"Alice": "A", "Bob": "B", "Charlie": "C"}
+for name, grade in student_grades.items():
+    print(f"Student {name} has grade {grade}")
+#| label: label-me-5
+squares = [(i, i**2) for i in range(1, 11)]
 
-```
+def calculate_stats(numbers):
+    return statistics.mean(numbers), statistics.median(numbers), statistics.stdev(numbers)
 
-## 3 - Pandas Introduction
+#| label: label-me-1
+A = np.arange(100).reshape(10, 10)
+print("Determinant of A:", np.linalg.det(A))
+
+#| label: label-me-2
+array = np.random.rand(10)
+normalized_array = (array - array.min()) / (array.max() - array.min())
+#| label: label-me-3
+B = np.random.rand(10, 5)
+third_column = B[:, 2]
+for element in third_column:
+    print("Square root:", np.sqrt(element))
+#| label: label-me-4
+C = np.random.rand(5, 5)
+print("Mean (Rows):", np.mean(C, axis=1))
+print("Mean (Columns):", np.mean(C, axis=0))
+print("Median (Rows):", np.median(C, axis=1))
+print("Median (Columns):", np.median(C, axis=0))
+print("Variance (Rows):", np.var(C, axis=1))
+print("Variance (Columns):", np.var(C, axis=0))
+max_var_row = np.argmax(np.var(C, axis=1))
+print("Row with max variance:", C[max_var_row])
+
+#| label: label-me-1
+series = pd.Series(np.random.randint(1, 101, 10), index=list('abcdefghij'))
+df = pd.DataFrame(series, columns=['Random_Numbers'])
+
+#| label: label-me-2
+df= pd.read_csv("data/info.csv")
+print(df.dtypes)
+print(df.head(10))
+#| label: label-me-3
+df['score'].fillna(df['score'].median(), inplace=True)
+df['score_normalized'] = (df['score'] - df['score'].mean()) / df['score'].std()
+#| label: label-me-4
+grouped = df.groupby('name')['score'].mean()
+new_df = grouped.reset_index().sort_values('score', ascending=False)
+
 
