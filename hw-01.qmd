@@ -1,6 +1,6 @@
 ---
 title: "HW 01"
-author: "INSERT YOUR NAME HERE"
+author: "Ayesha Khatun"
 format:
   html:
     embed-resources: true
